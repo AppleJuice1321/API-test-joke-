@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>API test</title>
+</head>
+<body>
+<h2>Hent data fra en offentlig tilgængelig API.</h2>
+<p> </p>
+<h3>Kan køre lokalt på computeren - bruger ikke PHP eller database</h3>
+<p> </p>
+<p>Vi henter en JSON String fra API'en https://official-joke-api.appspot.com/jokes/programming/random</p>
+
+<button onclick="GetAPIdata()">Joke</button>
+
+<script>
+GetAPIdata = async() => {
+const url = 'https://official-joke-api.appspot.com/jokes/programming/random';
+let response = await fetch(url);
+if (response.ok) { // if HTTP-status is 200-299
+  //alert("response ok");
+  //get the response body as JSON data
+  let data = await response.json();
+  alert(data[0].setup);
+  alert(data[0].punchline);
+  // let text = await response.text(); // read response body as text
+  // alert(text);
+} 
+else {
+  alert("HTTP-Error: " + response.status);
+}
+}
+</script>
+</body>
+</html>
